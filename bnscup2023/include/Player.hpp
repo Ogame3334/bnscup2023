@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include "TileAssets.hpp"
+#include "TileMap.hpp"
 
 namespace bnscup2023 {
 	enum class PLAYERPOSE {
@@ -17,11 +19,15 @@ namespace bnscup2023 {
 		Point focusedPos;
 		// TODO: プレイヤーアセットの保持
 		PLAYERPOSE pose;
+		TileAssets& tile_assets;
+		TileMap& tile_map;
 		
 	public:
-		Player() {}
+		// Player() {}
+		Player(TileAssets& ta, TileMap& tm)
+			: tile_assets(ta), tile_map(tm) {}
 
-		bool access();
+		void access();
 		void update();
 		void draw() const;
 	};
