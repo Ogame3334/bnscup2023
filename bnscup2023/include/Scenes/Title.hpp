@@ -1,20 +1,25 @@
 ﻿#pragma once
 
-#include "../SceneConfig.hpp"
+#include "../SceneBase.hpp"
 
-class TitleScene : public App::Scene
+class TitleScene : public SceneBese
 {
 public:
 	TitleScene(const InitData& init)
-		: IScene{ init }
+		: SceneBese{ init }
 	{
 
 	}
 
-	void update() override
+	void updateGame() override
 	{
 		if (KeySpace.down())
 			changeScene(U"TestScene", 500, CrossFade{ false });
+	}
+
+	void updateUI() override
+	{
+
 	}
 
 	void draw() const override
