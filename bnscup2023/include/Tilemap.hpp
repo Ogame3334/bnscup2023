@@ -1,31 +1,29 @@
-﻿#include <Siv3D.hpp>
+﻿#pragma once
+#include <Siv3D.hpp>
+#include "TileAssets.hpp"
+#include "LoadField.hpp"
 
 namespace bnscup2023 {
-	enum class TileId {
-		AIR,
-		NORMAL_GRAND,
-	};
-	class Tile {
-	private:
-		inline static int TileSize = 10;
-		Texture texture;
-	public:
-		Tile() = default;
-		Tile(String texture_name) : texture(Texture{ texture_name }) {}
-		Tile(Texture t) : texture(t) {}
-		void setTexture(Texture t) { this->texture = t; }
-		void setTexture(String texture_name) { this->texture = Texture{ texture_name }; }
-		Texture getTexture() const noexcept { return this->texture; }
-		void draw() const;
-	};
-
-	namespace Tiles {
-		const Tile air{U"air"};
-	}
-
 	class TileMap {
 	private:
+		TileAssets& tile_assets;
+		Grid<int> field{ Width, Height, -1};
 	public:
+		inline static constexpr int Width = 32;
+		inline static constexpr int Height = 18;
+
+		void operator = (const TileMap& tm) {
+			this->tile_assets = tm.tile_assets;
+			this->field = tm.field;
+		}
+		void operator = (TileMap&& tm) {
+			this->tile_assets = tm.tile_assets;
+			this->field = tm.field;
+		}
+		TileMap(TileAssets& ta) : tile_assets(ta) {}
+		TileMap(TileAssets& ta, const Grid<int>& _field) : tile_assets(ta), field(_field) {}
+		TileMap(TileAssets& ta, Grid<int>&& _field) : tile_assets(ta), field(_field) {}
+		TileMap(TileAssets& ta, String&& field_data) : tile_assets(ta), field(LoadCSVField(field_data, Width, Height)) {}
 		void update();
 		void draw() const;
 	};

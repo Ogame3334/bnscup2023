@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="src\TileAssets.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -297,6 +298,8 @@
     <None Include="App\example\toml\config.toml" />
     <None Include="App\example\toml\test.toml" />
     <None Include="App\example\zip\zip_test.zip" />
+    <None Include="Assets\Fields\Sample.csv" />
+    <None Include="Assets\Fields\TestField.csv" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\shot.mp3" />
@@ -316,7 +319,16 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Scene.hpp" />
+    <ClInclude Include="include\SceneConfig.hpp" />
+    <ClInclude Include="include\Scenes\Test.hpp" />
+    <ClInclude Include="include\Scenes\Title.hpp" />
+    <ClInclude Include="include\TileAssets.hpp" />
+    <ClInclude Include="include\LoadField.hpp" />
+    <ClInclude Include="include\Tile.hpp" />
     <ClInclude Include="include\Tilemap.hpp" />
+    <ClInclude Include="include\Tiles\Tiles.hpp" />
+    <ClInclude Include="include\Tiles\BaseTile.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
