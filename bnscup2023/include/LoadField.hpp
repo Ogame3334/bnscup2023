@@ -8,7 +8,7 @@ namespace bnscup2023 {
 
 		if (not csv) // もし読み込みに失敗したら
 		{
-			throw Error{ U"Failed to load `config.csv`" };
+			throw Error{ U"Failed to load \"" + path + U"\""};
 		}
 
 		Grid<int> out_data{ Size{width, height}, -1 };

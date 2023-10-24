@@ -10,9 +10,9 @@ using namespace bnscup2023;
 struct GameData {
 	TileAssets tile_assets;
 	GameData() {
-		tile_assets.add<AirTile>(U"error");
+		tile_assets.add<ErrorTile>(U"error");
 		tile_assets.add<AirTile>(U"air");
-		tile_assets.add<AirTile>(U"normal_ground");
+		tile_assets.add<NormalGroundTile>(U"normal_ground");
 	}
 };
 

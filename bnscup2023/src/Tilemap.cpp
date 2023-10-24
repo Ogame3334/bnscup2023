@@ -7,7 +7,7 @@ namespace bnscup2023 {
 	void TileMap::draw() const {
 		for (int y = 0; y < Height; y++) {
 			for (int x = 0; x < Width; x++) {
-				this->tile_assets[this->field[y][x]].draw(
+				this->field[y][x]->draw(
 					BaseTile::TileSize * x, BaseTile::TileSize * y
 				);
 			}
