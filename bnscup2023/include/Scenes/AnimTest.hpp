@@ -69,7 +69,6 @@ public:
 		//getData().tile_assets[1].drawAt(Scene::CenterF());
 		//getData().tile_assets[U"normal_ground"].drawAt(Scene::CenterF());
 		//this->tile_map.draw();
-		anim.draw();
-
+		anim.getNowTexture().drawAt(Scene::CenterF());
 	}
 };
