@@ -7,7 +7,7 @@ class TestScene : public App::Scene
 {
 private:
 	TileMap tile_map = TileMap{ getData().tile_assets, U"TestField.csv" };
-	Player player = Player{ getData().tile_assets, tile_map };
+	Player player = Player{ getData().tile_assets, tile_map, Vec2(4, 4)};
 public:
 	TestScene(const InitData& init)
 		: IScene{ init }
@@ -17,7 +17,7 @@ public:
 
 	void update() override
 	{
-		this->player.update();
+		this->player.update(1000/60.0);// TODO: 前フレームからの経過時間を渡す(秒orミリ秒)
 	}
 
 	void draw() const override
