@@ -3,22 +3,26 @@
 #include <Siv3D.hpp>
 
 namespace bnscup2023 {
+	class Player;
 	class BaseTile {
 	private:
-		virtual void whenAccessed() {};
+		virtual void whenAccessed(Player& /*player*/) {};
 	protected:
 		//Texture texture;
-		String texture_asset_name;
-		bool isCollisionable;
+		String texture_asset_name = U"";
+		bool isCollisionable = true;
+		bool isClimbable = false;
 	public:
 		inline static int TileSize = 40;
-		BaseTile() : texture_asset_name(U""), isCollisionable(false) {}
-		BaseTile(const BaseTile& other) : texture_asset_name(other.texture_asset_name), isCollisionable(other.isCollisionable) {}
+		BaseTile() = default;
+		BaseTile(const BaseTile& other) : texture_asset_name(other.texture_asset_name), isCollisionable(other.isCollisionable), isClimbable(other.isClimbable) {}
 
-		void access() { this->whenAccessed(); };
+		void access(Player& player) { this->whenAccessed(player); };
 
 		void setCollisionable(bool cond) { this->isCollisionable = cond; }
 		bool getCollisionable() const noexcept { return this->isCollisionable; }
+		void setClimbable(bool cond) { this->isClimbable = cond; }
+		bool getClimbable() const noexcept { return this->isClimbable; }
 
 		void draw(int x, int y) const { Rect{ x, y, TileSize }(TextureAsset(this->texture_asset_name).resized(TileSize)).draw(); }
 		void draw(Point pos) const { this->draw(pos.x, pos.y); }
