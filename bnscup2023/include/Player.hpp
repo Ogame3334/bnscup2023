@@ -14,9 +14,9 @@ namespace bnscup2023 {
 
 	class Player {
 	private:
-		static constexpr double walk_speed = 1e-1;
-		static constexpr double jump_speed = 2e-1;
-		static constexpr double G = 1e-2;
+		static constexpr double walk_speed = 7e-2;
+		static constexpr double jump_speed = 1e-1;
+		static constexpr double G = 4e-3;
 		Vec2 pos = Vec2(0, 0);
 		Vec2 vel = Vec2(0, 0);
 		Point focusedPos;
@@ -25,7 +25,6 @@ namespace bnscup2023 {
 		TileAssets& tile_assets;
 		TileMap& tile_map;
 		double dt;
-		bool falling = false;
 		
 	public:
 		// Player() {}
@@ -42,5 +41,7 @@ namespace bnscup2023 {
 		void walk(double s);
 		void jump();
 		Rect getRect() const;
+		Rect getFootRect() const;
+		bool isFalling() const;
 	};
 }
