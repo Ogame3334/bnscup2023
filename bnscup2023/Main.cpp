@@ -10,6 +10,7 @@ void Main()
 
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy);
 	FontAsset::Register(U"Default", 30, Typeface::CJK_Regular_JP);
+	FontAsset::Register(U"ButtonDefault", 15, Typeface::CJK_Regular_JP);
 	// シーンマネージャーを作成
 	App manager;
 
@@ -18,6 +19,7 @@ void Main()
 
 	// ゲームシーン（名前は "Game"）を登録
 	manager.add<TestScene>(U"TestScene");
+	manager.add<OgameTest>(U"OgameTest");
 	manager.add<AnimTestScene>(U"AnimTestScene");
 
 	constexpr int FPS = 60; // 1秒間に1画面を書き換える回数
