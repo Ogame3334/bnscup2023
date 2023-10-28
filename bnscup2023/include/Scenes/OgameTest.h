@@ -6,7 +6,7 @@
 class OgameTest : public App::Scene
 {
 private:
-	TileMap tile_map = TileMap{ getData().tile_assets, U"TestField.csv" };
+	TileMap tile_map = TileMap{ getData().tile_assets, U"TileTest.csv" };
 	MenuButtonManager mbm{ true };
 public:
 	OgameTest(const InitData& init)
