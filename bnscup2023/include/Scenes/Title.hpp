@@ -14,7 +14,7 @@ public:
 	void updateGame() override
 	{
 		if (KeySpace.down())
-			changeScene(U"TestScene", 500, CrossFade{ false });
+			changeScene(U"AnimTestScene", 500, CrossFade{ false });
 	}
 
 	void updateUI() override
