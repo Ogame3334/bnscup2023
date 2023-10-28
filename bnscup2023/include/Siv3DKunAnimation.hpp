@@ -34,8 +34,10 @@ namespace bnscup2023 {
 		constexpr PlayerState getState() const noexcept { return this->state; }
 		constexpr void setHasWater(bool hasWater) { this->has_water = hasWater; }
 		constexpr bool getHasWater() const noexcept { return this->has_water; }
+		/// @brief const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };を記述して描画してください。
+		/// @return 現在描画するテクスチャ
+		TextureRegion getNowTexture() const;
 
 		void update();
-		void draw() const;
 	};
 }

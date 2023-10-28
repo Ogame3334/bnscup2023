@@ -5,7 +5,7 @@ using namespace bnscup2023;
 TextureRegion Siv3DKunAnimation::getTextureWithIndex(int _index) const {
 	int x = _index % 6;
 	int y = _index / 6;
-	return this->texture(x * 20, y * 28, 20, 28);
+	return this->texture(x * 20, y * 20, 20, 20);
 }
 TextureRegion Siv3DKunAnimation::calcDrawTexture() const {
 	int64 t;
@@ -23,7 +23,7 @@ TextureRegion Siv3DKunAnimation::calcDrawTexture() const {
 	}
 	auto state_num = static_cast<int>(this->state);
 	if (state_num == 6 or state_num == 7 or state_num == 8 or state_num == 9) {
-		return this->getTextureWithIndex(this->index + 18 + (state_num - 6) * 12).scaled(8);
+		return this->getTextureWithIndex(this->index + 18 + (state_num - 6) * 12).scaled(2);
 	}
 	else {
 		switch (this->state)
@@ -42,7 +42,7 @@ TextureRegion Siv3DKunAnimation::calcDrawTexture() const {
 		default:
 			break;
 		}
-		return this->getTextureWithIndex(this->pattern[t / static_cast<int>(500 / this->anim_speed) % 4] + static_cast<int>(padding) + (this->has_water ? 3 : 0)).scaled(8);
+		return this->getTextureWithIndex(this->pattern[t / static_cast<int>(500 / this->anim_speed) % 4] + static_cast<int>(padding) + (this->has_water ? 3 : 0)).scaled(2);
 	}
 }
 void Siv3DKunAnimation::update() {
@@ -71,9 +71,8 @@ void Siv3DKunAnimation::update() {
 	}
 	Print << this->anim_start;
 }
-void Siv3DKunAnimation::draw() const {
-	const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
-	
 
-	this->calcDrawTexture().drawAt(Scene::CenterF());
+TextureRegion Siv3DKunAnimation::getNowTexture() const {
+	//const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
+	return this->calcDrawTexture();
 }
