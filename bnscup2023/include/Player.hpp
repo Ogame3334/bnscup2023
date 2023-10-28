@@ -41,5 +41,6 @@ namespace bnscup2023 {
 		void draw() const;
 		void walk(double s);
 		void jump();
+		Rect getRect() const;
 	};
 }

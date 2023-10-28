@@ -12,18 +12,30 @@ namespace bnscup2023 {
 		if (KeyD.pressed() or KeyRight.pressed()) walk(+1);
 		if (KeyA.pressed() or KeyLeft.pressed()) walk(-1);
 		if (KeySpace.pressed()) jump();
-		Print << pos;
 
 		// 位置の更新
 		pos += vel;
 		if (falling)vel += Vec2(0, G);
 
 		// TODO: マップ内のタイルとの衝突判定
-		if (false or pos.y>8/* 衝突判定 */) {
+		bool hasCollided = false;
+		Point thePoint;
+		BaseTile theTile;
+		for (int j = -1; j <= 1 and !hasCollided; j++) {
+			for (int i = -1; i <= 1 and !hasCollided; i++) {
+				thePoint = (pos.movedBy(.5,.5).asPoint() + Point(i, j));
+				if (!thePoint.intersects(Rect(-1, -1, tile_map.Width+1, tile_map.Height+1)))break;
+				theTile = tile_map.at(thePoint);
+				if (theTile.getCollisionable()) {
+					hasCollided = hasCollided or Rect(thePoint*BaseTile::TileSize, BaseTile::TileSize).intersects(getRect());
+				}
+			}
+		}
+		if (hasCollided) {
 			if (falling) {
 				// ジャンプ着地時
 				falling = false;
-				pos = pos_prev;
+				pos.y = floor(pos.y);
 				vel.y = 0;
 			}
 			else {
@@ -34,8 +46,11 @@ namespace bnscup2023 {
 	void Player::draw() const {
 		// TODO: 保持したプレイヤーアセットの描画
 		// tile_assets[1].draw(pos * BaseTile::TileSize);
-		Rect{ int(pos.x*BaseTile::TileSize), int(pos.y*BaseTile::TileSize), BaseTile::TileSize }
-			(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();
+	/*	Rect{ int(pos.x*BaseTile::TileSize), int(pos.y*BaseTile::TileSize), BaseTile::TileSize }
+			(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();*/
+
+		// 当たり判定領域
+		getRect()(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();
 	}
 
 	void Player::walk(double s) {
@@ -47,5 +62,9 @@ namespace bnscup2023 {
 			vel.y -= jump_speed;
 			falling = true;
 		}
+	}
+
+	Rect Player::getRect() const {
+		return Rect((pos * BaseTile::TileSize).asPoint(), BaseTile::TileSize);
 	}
 }
