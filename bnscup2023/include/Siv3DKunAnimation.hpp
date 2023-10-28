@@ -1,0 +1,41 @@
+﻿#pragma once
+
+#include <Siv3D.hpp>
+
+namespace bnscup2023 {
+	enum class PlayerState {
+		Left,
+		Right,
+		LeftWalk,
+		RightWalk,
+		Behind,
+		UpDown,
+		LeftGetWater,
+		RightGetWater,
+		LeftSprinkleWater,
+		RightSprinkleWater,
+	};
+	class Siv3DKunAnimation {
+	private:
+		PlayerState state = PlayerState::UpDown;
+		PlayerState pre_state = PlayerState::UpDown;
+		Texture texture{ U"Assets/Player/siv3d-kun-bnscup2023.png" };
+		std::array<int, 4> pattern = { 1, 0, 1, 2 };
+		bool has_water = true;
+		int64 anim_start = 0;
+		int index = 0;
+ 
+		static constexpr double anim_speed = 2;
+
+		TextureRegion getTextureWithIndex(int _index) const;
+		TextureRegion calcDrawTexture() const;
+	public:
+		constexpr void setState(PlayerState _state) { this->state = _state; }
+		constexpr PlayerState getState() const noexcept { return this->state; }
+		constexpr void setHasWater(bool hasWater) { this->has_water = hasWater; }
+		constexpr bool getHasWater() const noexcept { return this->has_water; }
+
+		void update();
+		void draw() const;
+	};
+}
