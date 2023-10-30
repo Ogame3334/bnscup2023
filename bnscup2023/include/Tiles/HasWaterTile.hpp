@@ -10,7 +10,7 @@ namespace bnscup2023 {
 		HasWaterTile() = default;
 		HasWaterTile(String texture_name) {
 			this->texture_asset_name = texture_name;
-			this->isClimbable = true;
+			this->is_climbable = true;
 		}
 
 		[[deprecated]]

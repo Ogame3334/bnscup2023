@@ -9,7 +9,7 @@ namespace bnscup2023 {
 		ErrorTile() = default;
 		ErrorTile(String texture_name) {
 			this->texture_asset_name = texture_name;
-			this->isCollisionable = false;
+			this->is_collisionable = false;
 		}
 	};
 	class AirTile : public BaseTile {
@@ -17,13 +17,13 @@ namespace bnscup2023 {
 		AirTile() = default;
 		AirTile(String texture_name) {
 			this->texture_asset_name = texture_name;
-			this->isCollisionable = false;
+			this->is_collisionable = false;
 		}
 	};
-	class NormalGroundTile : public BaseTile {
+	class NormalTile : public BaseTile {
 	public:
-		NormalGroundTile() = default;
-		NormalGroundTile(String texture_name) {
+		NormalTile() = default;
+		NormalTile(String texture_name) {
 			this->texture_asset_name = texture_name;
 		}
 	};
@@ -43,7 +43,7 @@ namespace bnscup2023 {
 		LadderTile() = default;
 		LadderTile(String texture_name) {
 			this->texture_asset_name = texture_name;
-			this->isClimbable = true;
+			this->is_climbable = true;
 		}
 	};
 	class PuddleTile : public HasWaterTile {

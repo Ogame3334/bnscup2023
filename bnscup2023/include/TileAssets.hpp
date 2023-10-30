@@ -17,9 +17,10 @@ namespace bnscup2023 {
 			assets.push_back(std::move(std::make_pair<String, std::shared_ptr<BaseTile>>(std::move(key_and_texture_name), std::shared_ptr<BaseTile>(new _T(key_and_texture_name)))));
 		}
 		template<class _T>
-		void add(String&& key, String&& texture_name) {
+		BaseTile& add(String&& key, String&& texture_name) {
 			TextureAsset::Register(texture_name, U"Assets\\Textures\\Tiles\\" + texture_name + U".png");
 			assets.push_back(std::move(std::make_pair<String, std::shared_ptr<BaseTile>>(std::move(key), std::shared_ptr<BaseTile>(new _T(texture_name)))));
+			return *(assets.back().second);
 		}
 		BaseTile get(int index) {
 			if (index < 0 or index >= assets.size()) return *(assets[0].second);
