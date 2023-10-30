@@ -5,6 +5,17 @@ using namespace bnscup2023;
 //void MenuButton::update() {
 //
 //}
+
+MenuButton& MenuButtonManager::add(std::function<void(void)> h) {
+	this->menu_buttons.push_back(MenuButtonContainer{ h });
+	if (this->now_selected == this->menu_buttons.size() - 1) this->menu_buttons.back().getButtonRef().setActive(true);
+	return this->menu_buttons.back().getButtonRef();
+}
+
+void MenuButtonManager::setConnection(int index, int up, int right, int down, int left) {
+	this->menu_buttons[index].getConnectionRef() = { up, right, down, left };
+}
+
 void MenuButton::draw() const {
 	this->display_rect.draw(this->is_active ? this->active_color : this->normal_color);
 	FontAsset(U"ButtonDefault")(this->display_text).drawAt(this->display_rect.center(), Palette::Black);

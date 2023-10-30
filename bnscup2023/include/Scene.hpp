@@ -5,3 +5,4 @@
 #include "Scenes/Test.hpp"
 #include "Scenes/OgameTest.h"
 #include "Scenes/AnimTest.hpp"
+#include "Scenes/MenuTest.hpp"
