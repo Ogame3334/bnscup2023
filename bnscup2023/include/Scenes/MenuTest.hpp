@@ -4,14 +4,14 @@
 #include "../MenuManager.hpp"
 #include "../SceneBase.hpp"
 
-class MenuTest : public SceneBese
+class MenuTest : public SceneBase
 {
 private:
 	TileMap tile_map = TileMap{ getData().tile_assets, U"TileTest.csv" };
 	MenuManager mm{ true };
 public:
 	MenuTest(const InitData& init)
-		: SceneBese{ init }
+		: SceneBase{ init }
 	{
 		mm.addButton([] {Print << U"Hi!!"; }).setText(U"Hi!!");
 		mm.addButton([] {Print << U"Hoge!!"; }).setText(U"Hoge!!").setRectPos(100, 200);

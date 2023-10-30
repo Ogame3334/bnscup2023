@@ -2,11 +2,11 @@
 
 #include "../SceneBase.hpp"
 
-class TitleScene : public SceneBese
+class TitleScene : public SceneBase
 {
 public:
 	TitleScene(const InitData& init)
-		: SceneBese{ init }
+		: SceneBase{ init }
 	{
 
 	}

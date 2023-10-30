@@ -5,7 +5,7 @@
 #include "../SceneBase.hpp"
 #include "../Siv3DKunAnimation.hpp"
 
-class AnimTestScene : public SceneBese
+class AnimTestScene : public SceneBase
 {
 private:
 	bool pause;
@@ -14,7 +14,7 @@ private:
 	bool temp = true;
 public:
 	AnimTestScene(const InitData& init)
-		: SceneBese{ init }
+		: SceneBase{ init }
 	{
 
 	}

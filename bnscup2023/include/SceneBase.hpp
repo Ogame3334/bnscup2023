@@ -2,12 +2,12 @@
 
 #include "SceneConfig.hpp"
 
-class SceneBese : public App::Scene
+class SceneBase : public App::Scene
 {
 private:
 	bool isPause;
 public:
-	explicit SceneBese(const InitData& init)
+	explicit SceneBase(const InitData& init)
 		: IScene{ init } {
 		isPause = false;
 	};

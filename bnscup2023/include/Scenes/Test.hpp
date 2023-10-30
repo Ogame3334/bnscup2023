@@ -3,7 +3,7 @@
 #include "../SceneConfig.hpp"
 #include "../Player.hpp"
 
-class TestScene : public SceneBese
+class TestScene : public SceneBase
 {
 private:
 	bool pause;
@@ -11,7 +11,7 @@ private:
 	Player player = Player{ getData().tile_assets, tile_map, Vec2(4, 4)};
 public:
 	TestScene(const InitData& init)
-		: SceneBese{ init }
+		: SceneBase{ init }
 	{
 
 	}
