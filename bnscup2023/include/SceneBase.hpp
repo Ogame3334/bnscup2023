@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../SceneConfig.hpp"
+#include "SceneConfig.hpp"
 
 class SceneBese : public App::Scene
 {
