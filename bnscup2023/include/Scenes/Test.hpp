@@ -7,7 +7,7 @@ class TestScene : public SceneBase
 {
 private:
 	bool pause;
-	TileMap tile_map = TileMap{ getData().tile_assets, U"TestField.csv" };
+	TileMap tile_map = TileMap{ getData().tile_assets, U"TileTest.csv" };
 	Player player = Player{ getData().tile_assets, tile_map, Vec2(4, 4)};
 public:
 	TestScene(const InitData& init)

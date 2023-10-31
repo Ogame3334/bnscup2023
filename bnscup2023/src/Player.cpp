@@ -8,14 +8,30 @@ namespace bnscup2023 {
 		Vec2 pos_prev = Vec2(pos);
 		this->dt = dt;
 		bool falling = isFalling();
+		Print << onClimbable();
+		bool climbable = onClimbable();
 
-		ClearPrint();
-		Print << falling << vel;
+		if (vel.x < 0) {
+			anim.setState(PlayerState::Left);
+		}
+		else if (vel.x > 0) {
+			anim.setState(PlayerState::Right);
+		}
 
 		vel.x = 0;
 		if (KeyD.pressed() or KeyRight.pressed()) walk(+1);
 		if (KeyA.pressed() or KeyLeft.pressed()) walk(-1);
-		if (KeySpace.pressed() and not falling) jump();
+		if (KeySpace.pressed()) {
+			if (climbable) {
+				climb(+1);
+			}
+			else if(not falling) {
+				jump();
+			}
+		}
+		else if (climbable and falling and vel.y > 0) {
+			climb(-1);
+		}
 
 		// 位置の更新
 		if (falling)vel += Vec2(0, G);
@@ -55,34 +71,53 @@ namespace bnscup2023 {
 			}
 			else if (hasCollidedGrid[1][0]) {
 				// 壁への衝突(左)
-				pos.x = ceil(pos.x);
+				pos.x = ceil(pos.x) - paddingX;
 			}
 			else if (hasCollidedGrid[1][2]) {
 				// 壁への衝突(右)
-				pos.x = floor(pos.x);
+				pos.x = floor(pos.x) + paddingX;
 			}
 		}
+
+		// アニメーションの更新
+		anim.update();
 	}
 	void Player::draw() const {
 		// TODO: 保持したプレイヤーアセットの描画
-		// tile_assets[1].draw(pos * BaseTile::TileSize);
-	/*	Rect{ int(pos.x*BaseTile::TileSize), int(pos.y*BaseTile::TileSize), BaseTile::TileSize }
-			(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();*/
+		 const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
+		Rect{ int(pos.x*BaseTile::TileSize), int(pos.y*BaseTile::TileSize), BaseTile::TileSize }
+			(anim.getNowTexture().resized(BaseTile::TileSize)).draw();
 
 		// 当たり判定領域
-		getRect()(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();
+		//getRect()(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();
 	}
 
 	void Player::walk(double s) {
-		vel.x += walk_speed * s;
+		vel.x = walk_speed * s;
+		if (s < 0) {
+			anim.setState(PlayerState::LeftWalk);
+		} else {
+			anim.setState(PlayerState::RightWalk);
+		}
+	}
+
+	void Player::climb(double s) {
+		if(vel.y >= 0) vel.y = - climb_speed * s;
+		anim.setState(PlayerState::Behind);
 	}
 
 	void Player::jump() {
 		vel.y = -jump_speed;
+		if (vel.x < 0) {
+			anim.setState(PlayerState::Left);
+		}
+		else {
+			anim.setState(PlayerState::Right);
+		}
 	}
 
 	Rect Player::getRect() const {
-		return Rect((pos * BaseTile::TileSize).asPoint(), BaseTile::TileSize);
+		return Rect((pos * BaseTile::TileSize).asPoint(), BaseTile::TileSize).scaled(1.-paddingX*2, 1.).asRect();
 	}
 
 	Rect Player::getFootRect() const {
@@ -105,5 +140,9 @@ namespace bnscup2023 {
 			}
 		}
 		return not hasCollided;
+	}
+
+	bool Player::onClimbable() const {
+		return tile_map.at(pos.movedBy(.5, .5).asPoint()).getClimbable();
 	}
 }

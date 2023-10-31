@@ -44,6 +44,7 @@ namespace bnscup2023 {
 		LadderTile(String texture_name) {
 			this->texture_asset_name = texture_name;
 			this->is_climbable = true;
+			this->is_collisionable = false;
 		}
 	};
 	class PuddleTile : public HasWaterTile {
