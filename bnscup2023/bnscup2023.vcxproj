@@ -304,6 +304,7 @@
     <None Include="App\example\zip\zip_test.zip" />
     <None Include="Assets\Fields\Sample.csv" />
     <None Include="Assets\Fields\TestField.csv" />
+    <None Include="Assets\Fields\TileTest.csv" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\shot.mp3" />
@@ -338,6 +339,7 @@
     <ClInclude Include="include\LoadField.hpp" />
     <ClInclude Include="include\Tile.hpp" />
     <ClInclude Include="include\Tilemap.hpp" />
+    <ClInclude Include="include\Tiles\HasWaterTile.hpp" />
     <ClInclude Include="include\Tiles\Tiles.hpp" />
     <ClInclude Include="include\Tiles\BaseTile.hpp" />
     <ClInclude Include="include\Siv3DKunAnimation.hpp" />

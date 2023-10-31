@@ -8,6 +8,8 @@ namespace bnscup2023 {
 		Vec2 pos_prev = Vec2(pos);
 		this->dt = dt;
 		bool falling = isFalling();
+		Print << onClimbable();
+		bool climbable = onClimbable();
 
 		if (vel.x < 0) {
 			anim.setState(PlayerState::Left);
@@ -19,7 +21,17 @@ namespace bnscup2023 {
 		vel.x = 0;
 		if (KeyD.pressed() or KeyRight.pressed()) walk(+1);
 		if (KeyA.pressed() or KeyLeft.pressed()) walk(-1);
-		if (KeySpace.pressed() and not falling) jump();
+		if (KeySpace.pressed()) {
+			if (climbable) {
+				climb(+1);
+			}
+			else if(not falling) {
+				jump();
+			}
+		}
+		else if (climbable and falling and vel.y > 0) {
+			climb(-1);
+		}
 
 		// 位置の更新
 		if (falling)vel += Vec2(0, G);
@@ -81,12 +93,17 @@ namespace bnscup2023 {
 	}
 
 	void Player::walk(double s) {
-		vel.x += walk_speed * s;
+		vel.x = walk_speed * s;
 		if (s < 0) {
 			anim.setState(PlayerState::LeftWalk);
 		} else {
 			anim.setState(PlayerState::RightWalk);
 		}
+	}
+
+	void Player::climb(double s) {
+		if(vel.y >= 0) vel.y = - climb_speed * s;
+		anim.setState(PlayerState::Behind);
 	}
 
 	void Player::jump() {
@@ -123,5 +140,9 @@ namespace bnscup2023 {
 			}
 		}
 		return not hasCollided;
+	}
+
+	bool Player::onClimbable() const {
+		return tile_map.at(pos.movedBy(.5, .5).asPoint()).getClimbable();
 	}
 }

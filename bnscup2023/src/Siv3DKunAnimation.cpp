@@ -69,7 +69,6 @@ void Siv3DKunAnimation::update() {
 			}
 		}
 	}
-	Print << state_num;
 }
 
 TextureRegion Siv3DKunAnimation::getNowTexture() const {
