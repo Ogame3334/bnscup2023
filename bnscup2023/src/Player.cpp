@@ -2,41 +2,40 @@
 
 namespace bnscup2023 {
 	void Player::access() {
-		// TODO: 注目しているタイルのアクセス呼び出し
+		tile_map.at(focusedPos).access(*this);
 	}
 	void Player::update(double dt) {
 		Vec2 pos_prev = Vec2(pos);
 		this->dt = dt;
 		bool falling = isFalling();
-		Print << onClimbable();
 		bool climbable = onClimbable();
 
-		if (vel.x < 0) {
-			anim.setState(PlayerState::Left);
-		}
-		else if (vel.x > 0) {
-			anim.setState(PlayerState::Right);
-		}
-
+		auto p = pos.movedBy(.5, .5).asPoint();
+		if (vel.x < 0) anim.setState(PlayerState::Left);
+		else if (vel.x > 0) anim.setState(PlayerState::Right);
 		vel.x = 0;
-		if (KeyD.pressed() or KeyRight.pressed()) walk(+1);
-		if (KeyA.pressed() or KeyLeft.pressed()) walk(-1);
+		if (KeyD.pressed() or KeyRight.pressed()) {
+			walk(+1);
+			focusedPos = p.movedBy(+1, 0);
+		}
+		if (KeyA.pressed() or KeyLeft.pressed()) {
+			walk(-1);
+			focusedPos = p.movedBy(-1, 0);
+		}
+		if (KeyW.pressed() or KeyUp.pressed()) focusedPos = p.movedBy(0, -1);
+		if (KeyS.pressed() or KeyDown.pressed()) focusedPos = p.movedBy(0, +1);
 		if (KeySpace.pressed()) {
-			if (climbable) {
-				climb(+1);
-			}
-			else if(not falling) {
-				jump();
-			}
+			if (climbable) climb(+1);
+			else if(not falling) jump();
 		}
-		else if (climbable and falling and vel.y > 0) {
-			climb(-1);
-		}
+		else if (climbable and falling and vel.y > 0) climb(-1);
+		if (KeyE.pressed()) access();
 
 		// 位置の更新
 		if (falling)vel += Vec2(0, G);
 		pos += vel;
 
+		// 衝突判定
 		bool hasCollided = false;
 		Grid<bool> hasCollidedGrid = {
 			{false, false, false},
@@ -58,6 +57,7 @@ namespace bnscup2023 {
 			}
 		}
 
+		// 衝突判定結果による位置・速度の修正
 		if (hasCollided) {
 			if (!isFalling() && (hasCollidedGrid[2][0] or hasCollidedGrid[2][1] or hasCollidedGrid[2][2])) {
 				// ジャンプ着地時
@@ -83,13 +83,15 @@ namespace bnscup2023 {
 		anim.update();
 	}
 	void Player::draw() const {
-		// TODO: 保持したプレイヤーアセットの描画
-		 const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
+		const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
 		Rect{ int(pos.x*BaseTile::TileSize), int(pos.y*BaseTile::TileSize), BaseTile::TileSize }
 			(anim.getNowTexture().resized(BaseTile::TileSize)).draw();
 
 		// 当たり判定領域
 		//getRect()(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();
+
+		// 注目しているタイル
+			Rect(focusedPos * BaseTile::TileSize, BaseTile::TileSize).drawFrame(2, Palette::Azure);
 	}
 
 	void Player::walk(double s) {
