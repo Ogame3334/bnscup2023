@@ -9,8 +9,12 @@ namespace bnscup2023 {
 		this->dt = dt;
 		bool falling = isFalling();
 
-		ClearPrint();
-		Print << falling << vel;
+		if (vel.x < 0) {
+			anim.setState(PlayerState::Left);
+		}
+		else if (vel.x > 0) {
+			anim.setState(PlayerState::Right);
+		}
 
 		vel.x = 0;
 		if (KeyD.pressed() or KeyRight.pressed()) walk(+1);
@@ -55,34 +59,48 @@ namespace bnscup2023 {
 			}
 			else if (hasCollidedGrid[1][0]) {
 				// 壁への衝突(左)
-				pos.x = ceil(pos.x);
+				pos.x = ceil(pos.x) - paddingX;
 			}
 			else if (hasCollidedGrid[1][2]) {
 				// 壁への衝突(右)
-				pos.x = floor(pos.x);
+				pos.x = floor(pos.x) + paddingX;
 			}
 		}
+
+		// アニメーションの更新
+		anim.update();
 	}
 	void Player::draw() const {
 		// TODO: 保持したプレイヤーアセットの描画
-		// tile_assets[1].draw(pos * BaseTile::TileSize);
-	/*	Rect{ int(pos.x*BaseTile::TileSize), int(pos.y*BaseTile::TileSize), BaseTile::TileSize }
-			(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();*/
+		 const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
+		Rect{ int(pos.x*BaseTile::TileSize), int(pos.y*BaseTile::TileSize), BaseTile::TileSize }
+			(anim.getNowTexture().resized(BaseTile::TileSize)).draw();
 
 		// 当たり判定領域
-		getRect()(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();
+		//getRect()(TextureAsset(U"error").resized(BaseTile::TileSize)).draw();
 	}
 
 	void Player::walk(double s) {
 		vel.x += walk_speed * s;
+		if (s < 0) {
+			anim.setState(PlayerState::LeftWalk);
+		} else {
+			anim.setState(PlayerState::RightWalk);
+		}
 	}
 
 	void Player::jump() {
 		vel.y = -jump_speed;
+		if (vel.x < 0) {
+			anim.setState(PlayerState::Left);
+		}
+		else {
+			anim.setState(PlayerState::Right);
+		}
 	}
 
 	Rect Player::getRect() const {
-		return Rect((pos * BaseTile::TileSize).asPoint(), BaseTile::TileSize);
+		return Rect((pos * BaseTile::TileSize).asPoint(), BaseTile::TileSize).scaled(1.-paddingX*2, 1.).asRect();
 	}
 
 	Rect Player::getFootRect() const {

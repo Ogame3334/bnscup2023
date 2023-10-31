@@ -9,6 +9,7 @@ namespace bnscup2023 {
 		static constexpr double walk_speed = 7e-2;
 		static constexpr double jump_speed = 1e-1;
 		static constexpr double G = 4e-3;
+		static constexpr double paddingX = .2;
 		Vec2 pos = Vec2(0, 0);
 		Vec2 vel = Vec2(0, 0);
 		Point focusedPos;
