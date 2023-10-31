@@ -1,17 +1,9 @@
 ﻿#pragma once
 #include "TileAssets.hpp"
 #include "TileMap.hpp"
+#include "Siv3DKunAnimation.hpp"
 
 namespace bnscup2023 {
-	enum class PLAYERPOSE {
-		LEFT,
-		LEFT_WALK,
-		LEFT_JUMP,
-		RIGHT,
-		RIGHT_WALK,
-		RIGHT_JUMP,
-	};
-
 	class Player {
 	private:
 		static constexpr double walk_speed = 7e-2;
@@ -21,10 +13,10 @@ namespace bnscup2023 {
 		Vec2 vel = Vec2(0, 0);
 		Point focusedPos;
 		// TODO: プレイヤーアセットの保持
-		PLAYERPOSE pose;
 		TileAssets& tile_assets;
 		TileMap& tile_map;
-		double dt;
+		double dt = 16;
+		Siv3DKunAnimation anim = Siv3DKunAnimation();
 		
 	public:
 		// Player() {}

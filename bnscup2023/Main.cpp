@@ -23,6 +23,8 @@ void Main()
 	manager.add<MenuTest>(U"MenuTest");
 	manager.add<AnimTestScene>(U"AnimTestScene");
 
+	manager.init(U"Title", .3s);
+
 	constexpr int FPS = 60; // 1秒間に1画面を書き換える回数
 	Stopwatch sw;   //FPS60
 	sw.start(); //FPS60

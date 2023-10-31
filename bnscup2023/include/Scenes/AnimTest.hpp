@@ -69,6 +69,7 @@ public:
 		//getData().tile_assets[1].drawAt(Scene::CenterF());
 		//getData().tile_assets[U"normal_ground"].drawAt(Scene::CenterF());
 		//this->tile_map.draw();
+		const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
 		anim.getNowTexture().drawAt(Scene::CenterF());
 	}
 };
