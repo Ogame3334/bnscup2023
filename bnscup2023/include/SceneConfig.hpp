@@ -12,7 +12,17 @@ struct GameData {
 	GameData() {
 		tile_assets.add<ErrorTile>(U"error");
 		tile_assets.add<AirTile>(U"air");
-		tile_assets.add<NormalGroundTile>(U"normal_ground");
+		tile_assets.add<NormalTile>(U"floor"); // 1
+		tile_assets.add<NormalTile>(U"wall_inside"); // 2
+		tile_assets.add<NormalTile>(U"wall_left", U"wall"); // 3
+		tile_assets.add<NormalTile>(U"wall_right", U"wall").setHoriFlip(true); // 4
+		tile_assets.add<NormalTile>(U"floor_end_lower_left", U"floor_end_lower"); // 5
+		tile_assets.add<NormalTile>(U"floor_end_lower_right", U"floor_end_lower").setHoriFlip(true); // 6
+		tile_assets.add<NormalTile>(U"floor_end_upper_left", U"floor_end_upper"); // 7
+		tile_assets.add<NormalTile>(U"floor_end_upper_right", U"floor_end_upper").setHoriFlip(true); // 8
+		tile_assets.add<PuddleTile>(U"puddle_full"); // 9
+		tile_assets.add<MessageBoxTile>(U"message_box"); // 10
+		tile_assets.add<LadderTile>(U"ladder"); // 11
 	}
 };
 

@@ -75,16 +75,11 @@ namespace bnscup2023 {
 
 		MenuButtonContainer operator[] (int index) { return this->menu_buttons[index]; }
 
-		MenuButton& add(std::function<void(void)> h) {
-			this->menu_buttons.push_back(MenuButtonContainer{ h });
-			if (this->now_selected == this->menu_buttons.size() - 1) this->menu_buttons.back().getButtonRef().setActive(true);
-			return this->menu_buttons.back().getButtonRef();
-		}
+		MenuButton& add(std::function<void(void)> h);
 
-		void setConnection(int index, int up = -1, int right = -1, int down = -1, int left = -1) {
-			this->menu_buttons[index].getConnectionRef() = { up, right, down, left };
-		}
+		void setConnection(int index, int up = -1, int right = -1, int down = -1, int left = -1);
 		MenuButtonContainer& at(int index) { return this->menu_buttons[index]; }
+		void setNowSelected(int i) { this->now_selected = i; }
 
 		void update();
 		void draw() const;

@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="src\MenuButton.cpp" />
+    <ClCompile Include="src\MenuManager.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Siv3DKunAnimation.cpp" />
     <ClCompile Include="src\TileAssets.cpp" />
@@ -323,11 +324,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\MenuButton.hpp" />
+    <ClInclude Include="include\MenuManager.hpp" />
     <ClInclude Include="include\Player.hpp" />
     <ClInclude Include="include\Scene.hpp" />
     <ClInclude Include="include\SceneBase.hpp" />
     <ClInclude Include="include\SceneConfig.hpp" />
     <ClInclude Include="include\Scenes\AnimTest.hpp" />
+    <ClInclude Include="include\Scenes\MenuTest.hpp" />
     <ClInclude Include="include\Scenes\OgameTest.h" />
     <ClInclude Include="include\Scenes\Test.hpp" />
     <ClInclude Include="include\Scenes\Title.hpp" />
