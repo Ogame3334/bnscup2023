@@ -129,7 +129,7 @@ namespace bnscup2023 {
 
 	void Player::climb(double s) {
 		if(vel.y >= 0) vel.y = - climb_speed * s;
-		anim.setState(PlayerState::Behind);
+		anim.setState(PlayerState::UpDown);
 	}
 
 	void Player::jump() {
