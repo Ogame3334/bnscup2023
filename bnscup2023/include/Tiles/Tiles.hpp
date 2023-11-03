@@ -30,7 +30,7 @@ namespace bnscup2023 {
 	class MessageBoxTile : public BaseTile {
 	private:
 		void whenAccessed(Player& /*player*/) override {
-			Console << U"Hi, I'm MessageTile!!";
+			Print << U"Hi, I'm MessageTile!!";
 		}
 	public:
 		MessageBoxTile() = default;
