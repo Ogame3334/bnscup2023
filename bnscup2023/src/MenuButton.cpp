@@ -30,7 +30,6 @@ void MenuButtonManager::update() {
 	if ((KeyUp | KeyRight | KeyDown | KeyLeft).down()) {
 		if (this->now_selected == -1) {
 			this->now_selected = 0;
-			this->menu_buttons[this->now_selected].getButtonRef().setActive(true);
 		}
 		else {
 			this->menu_buttons[this->now_selected].getButtonRef().setActive(false);
@@ -47,8 +46,8 @@ void MenuButtonManager::update() {
 			else if (KeyLeft.down()) {
 				this->now_selected = getValue(this->menu_buttons[this->now_selected].getConnection().left, this->now_selected);
 			}
-			this->menu_buttons[this->now_selected].getButtonRef().setActive(true);
 		}
+		this->activeReload();
 	}
 	if (KeyEnter.down() and this->now_selected != -1) {
 		this->menu_buttons[this->now_selected].getButton().execute();

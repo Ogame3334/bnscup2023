@@ -14,7 +14,7 @@ namespace bnscup2023 {
 
 			for (int y = 0; y < field_id.height(); y++) {
 				for (int x = 0; x < field_id.width(); x++) {
-					out_field[y][x] = std::shared_ptr<BaseTile>(tile_assets.getPtr(field_id[y][x]));
+					out_field[y][x] = tile_assets.getPtr(field_id[y][x]);
 				}
 			}
 

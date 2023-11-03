@@ -13,7 +13,7 @@ public:
 	MenuTest(const InitData& init)
 		: SceneBase{ init }
 	{
-		mm.addButton([] {Print << U"Hi!!"; }).setText(U"Hi!!");
+		mm.addButton([] {Print << U"Hi!!"; }).setText(U"Play");
 		mm.addButton([] {Print << U"Hoge!!"; }).setText(U"Hoge!!").setRectPos(100, 200);
 		mm.addButton([this] {changeScene(U"AnimTestScene"); }).setRectPos(100, 300);
 		mm.at(0).setUp(2).setDown(1);
