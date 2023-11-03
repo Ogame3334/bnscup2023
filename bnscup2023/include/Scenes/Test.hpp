@@ -17,7 +17,7 @@ public:
 	}
 
 	void updateGame() override {
-    this->player.update(1000/60.0);// TODO: 前フレームからの経過時間を渡す(秒orミリ秒)
+	    this->player.update(1000/60.0);// TODO: 前フレームからの経過時間を渡す(秒orミリ秒)
 	}
 
 	void updateUI() override

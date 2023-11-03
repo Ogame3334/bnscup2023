@@ -14,7 +14,7 @@ void MenuManager::update() {
 
 void MenuManager::draw() const {
 	if (this->is_enable) {
-		Rect{ Point{0, 0}, Scene::Size() }.draw(ColorF{ 0, 0, 0, 0.4 });
+		if(this->is_back) Rect{ Point{0, 0}, Scene::Size() }.draw(ColorF{ 0, 0, 0, 0.4 });
 		this->menu_button_manager.draw();
 	}
 }

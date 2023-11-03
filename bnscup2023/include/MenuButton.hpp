@@ -69,6 +69,10 @@ namespace bnscup2023 {
 		};
 		Array<MenuButtonContainer> menu_buttons;
 		int now_selected = -1;
+
+		void activeReload() {
+			this->menu_buttons[this->now_selected].getButtonRef().setActive(true);
+		}
 	public:
 		MenuButtonManager() = default;
 		MenuButtonManager(bool isDefaultSelect) : now_selected(isDefaultSelect ? 0 : -1) {}
@@ -79,7 +83,15 @@ namespace bnscup2023 {
 
 		void setConnection(int index, int up = -1, int right = -1, int down = -1, int left = -1);
 		MenuButtonContainer& at(int index) { return this->menu_buttons[index]; }
-		void setNowSelected(int i) { this->now_selected = i; }
+		void setNowSelected(int i) {
+			this->now_selected = i;
+			this->activeReload();
+		}
+
+		void reset() {
+			now_selected = -1;
+			this->menu_buttons.clear();
+		}
 
 		void update();
 		void draw() const;
