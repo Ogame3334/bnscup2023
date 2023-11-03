@@ -26,6 +26,10 @@ namespace bnscup2023 {
 			if (index < 0 or index >= assets.size()) return *(assets[0].second);
 			else return *(assets[index + 1].second);
 		}
+		BaseTile* getPtr(int index) {
+			if (index < 0 or index >= assets.size()) return assets[0].second.get();
+			else return assets[index + 1].second.get();
+		}
 		BaseTile operator[] (int index) { return this->get(index); }
 		BaseTile operator[] (String&& key);
 	};
