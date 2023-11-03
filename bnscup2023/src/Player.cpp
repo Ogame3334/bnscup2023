@@ -10,20 +10,24 @@ namespace bnscup2023 {
 		bool falling = isFalling();
 		bool climbable = onClimbable();
 
+		bool kR = KeyD.pressed() or KeyRight.pressed(),
+			kL = KeyA.pressed() or KeyLeft.pressed(),
+			kU = KeyW.pressed() or KeyUp.pressed(),
+			kD = KeyS.pressed() or KeyDown.pressed();
 		auto p = pos.movedBy(.5, .5).asPoint();
 		if (vel.x < 0) anim.setState(PlayerState::Left);
 		else if (vel.x > 0) anim.setState(PlayerState::Right);
 		vel.x = 0;
-		if (KeyD.pressed() or KeyRight.pressed()) {
+		if (kR) {
 			walk(+1);
 			focusedPos = p.movedBy(+1, 0);
 		}
-		if (KeyA.pressed() or KeyLeft.pressed()) {
+		if (kL) {
 			walk(-1);
 			focusedPos = p.movedBy(-1, 0);
 		}
-		if (KeyW.pressed() or KeyUp.pressed()) focusedPos = p.movedBy(0, -1);
-		if (KeyS.pressed() or KeyDown.pressed()) focusedPos = p.movedBy(0, +1);
+		if (kU) focusedPos = p.movedBy(0, -1);
+		if (kD) focusedPos = p.movedBy(0, +1);
 		if (KeySpace.pressed()) {
 			if (climbable) climb(+1);
 			else if(not falling) jump();
@@ -34,6 +38,26 @@ namespace bnscup2023 {
 		// 位置の更新
 		if (falling)vel += Vec2(0, G);
 		pos += vel;
+
+		if (not(kR or kL or kU or kD) and falling) {
+			switch (anim.getState()) {
+			case PlayerState::Left:
+			case PlayerState::LeftGetWater:
+			case PlayerState::LeftSprinkleWater:
+			case PlayerState::LeftWalk:
+				focusedPos = p.movedBy(-1, 0);
+				break;
+			case PlayerState::Right:
+			case PlayerState::RightGetWater:
+			case PlayerState::RightSprinkleWater:
+			case PlayerState::RightWalk:
+				focusedPos = p.movedBy(+1, 0);
+				break;
+			default:
+				focusedPos = p.movedBy(0, 0);
+				break;
+			}
+		}
 
 		// 衝突判定
 		bool hasCollided = false;
@@ -105,16 +129,27 @@ namespace bnscup2023 {
 
 	void Player::climb(double s) {
 		if(vel.y >= 0) vel.y = - climb_speed * s;
-		anim.setState(PlayerState::Behind);
+		anim.setState(PlayerState::UpDown);
 	}
 
 	void Player::jump() {
 		vel.y = -jump_speed;
-		if (vel.x < 0) {
+		switch (anim.getState()) {
+		case PlayerState::Left:
+		case PlayerState::LeftGetWater:
+		case PlayerState::LeftSprinkleWater:
+		case PlayerState::LeftWalk:
 			anim.setState(PlayerState::Left);
-		}
-		else {
+			break;
+		case PlayerState::Right:
+		case PlayerState::RightGetWater:
+		case PlayerState::RightSprinkleWater:
+		case PlayerState::RightWalk:
 			anim.setState(PlayerState::Right);
+			break;
+		default:
+			anim.setState(PlayerState::UpDown);
+			break;
 		}
 	}
 
