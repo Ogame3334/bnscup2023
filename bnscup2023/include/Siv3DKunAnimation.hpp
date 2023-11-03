@@ -30,7 +30,18 @@ namespace bnscup2023 {
 		TextureRegion getTextureWithIndex(int _index) const;
 		TextureRegion calcDrawTexture() const;
 	public:
-		constexpr void setState(PlayerState _state) { this->state = _state; }
+		constexpr void setState(PlayerState _state) {
+			switch (this->state)
+			{
+			case PlayerState::LeftGetWater:
+			case PlayerState::RightGetWater:
+			case PlayerState::LeftSprinkleWater:
+			case PlayerState::RightSprinkleWater:
+				break;
+			default:
+				this->state = _state;
+			}
+		}
 		constexpr PlayerState getState() const noexcept { return this->state; }
 		constexpr void setHasWater(bool hasWater) { this->has_water = hasWater; }
 		constexpr bool getHasWater() const noexcept { return this->has_water; }
