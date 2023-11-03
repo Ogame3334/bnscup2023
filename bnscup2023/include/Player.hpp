@@ -38,5 +38,7 @@ namespace bnscup2023 {
 		Rect getFootRect() const;
 		bool isFalling() const;
 		bool onClimbable() const;
+		bool fillBucket();
+		bool useBucket();
 	};
 }

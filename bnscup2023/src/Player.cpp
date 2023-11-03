@@ -182,4 +182,16 @@ namespace bnscup2023 {
 	bool Player::onClimbable() const {
 		return tile_map.at(pos.movedBy(.5, .5).asPoint()).getClimbable();
 	}
+
+	bool Player::fillBucket() {
+		if (anim.getHasWater())return false;
+		anim.setHasWater(true);
+		return true;
+	}
+
+	bool Player::useBucket() {
+		if (not anim.getHasWater())return false;
+		anim.setHasWater(false);
+		return true;
+	}
 }
