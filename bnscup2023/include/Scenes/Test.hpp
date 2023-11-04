@@ -10,6 +10,7 @@ private:
 	bool hasGoaled = false;
 	TileMap tile_map = TileMap{ getData().tile_assets, U"TileTest.csv" };
 	Player player = Player{ getData().tile_assets, tile_map, Vec2(4, 4)};
+	MenuManager mm{ true };
 public:
 	TestScene(const InitData& init)
 		: SceneBase{ init }
