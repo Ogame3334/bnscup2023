@@ -20,7 +20,7 @@ public:
 	virtual void updateUI() {}
 	void update() override {
 
-		if (KeyP.down()) {
+		if (KeyEscape.down()) {
 			isPause = !isPause;
 		}
 

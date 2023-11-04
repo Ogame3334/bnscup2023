@@ -7,6 +7,7 @@
 void Main()
 {
 	Window::Resize(1280, 720);
+	System::SetTerminationTriggers(UserAction::CloseButtonClicked);
 
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy);
 	FontAsset::Register(U"Default", 30, Typeface::CJK_Regular_JP);
