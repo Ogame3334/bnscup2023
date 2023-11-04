@@ -46,4 +46,5 @@ namespace bnscup2023 {
 		void drawAt(int x, int y) const { this->draw(x - TileSize / 2, y - TileSize / 2); }
 		void drawAt(Point pos) const { this->drawAt(pos.x, pos.y); }
 	};
+	using BaseTilePtr = std::shared_ptr<BaseTile>;
 }
