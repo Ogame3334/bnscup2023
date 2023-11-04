@@ -4,7 +4,7 @@ namespace bnscup2023 {
 	void Player::access() {
 		tile_map.at(focusedPos).access(*this);
 	}
-	void Player::update(double dt) {
+	bool Player::update(double dt) {
 		Vec2 pos_prev = Vec2(pos);
 		this->dt = dt;
 		bool falling = isFalling();
@@ -89,6 +89,9 @@ namespace bnscup2023 {
 
 		// アニメーションの更新
 		anim.update();
+
+		// クリア条件の判定
+		return tile_map.Width - 1 < pos.x;
 	}
 	void Player::draw() const {
 		const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
