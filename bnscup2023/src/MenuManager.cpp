@@ -1,9 +1,16 @@
 ﻿#include "../include/MenuManager.hpp"
+#include "../include/SceneBase.hpp"
 
 using namespace bnscup2023;
 
+MenuManager MenuManager::GameMenuManager() {
+	MenuManager outmm{ true };
+	outmm.addButton([]{}).setText(U"リトライ").setRectPos(Scene::Center().x - 100, 500);
+	return outmm;
+}
+
 void MenuManager::update() {
-	if (KeyP.down()) {
+	if (KeyEscape.down() and this->is_can_escape) {
 		this->menu_button_manager.setNowSelected(0);
 		this->is_enable ^= 1;
 	}

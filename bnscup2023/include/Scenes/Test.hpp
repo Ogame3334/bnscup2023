@@ -15,6 +15,12 @@ public:
 		: SceneBase{ init }
 	{
 		tile_map.at(13, 14).test();
+		mm.addButton([this] {this->changeScene(U"Title", .3s); }).setText(U"タイトルに戻る").setRectPos(Scene::Center().x - 100, 260);
+		mm.addButton([this] {this->changeScene(U"TestScene", .3s); }).setText(U"リトライ").setRectPos(Scene::Center().x - 100, 360);
+		mm.addButton([]{ System::Exit(); }).setText(U"ゲームを終了する").setRectPos(Scene::Center().x - 100, 460);
+		mm.at(0).setUp(2).setDown(1);
+		mm.at(1).setUp(0).setDown(2);
+		mm.at(2).setUp(1).setDown(0);
 		AudioAsset(U"bgm").play();
 	}
 
@@ -34,16 +40,19 @@ public:
 	void updateUI() override
 	{
 		pause = getIsPause();
+		mm.update();
 	}
 
 	void draw() const override
 	{
+		TextureAsset(U"background").draw(0, 0);
 		//getData().tile_assets[1].drawAt(Scene::CenterF());
 		//getData().tile_assets[U"normal_ground"].drawAt(Scene::CenterF());
 		this->tile_map.draw();
 		this->player.draw();
 		if (pause) {
-			FontAsset(U"TitleFont")(U"PAUSE").drawAt(640, 360);
+			//FontAsset(U"TitleFont")(U"PAUSE").drawAt(640, 360);
+			mm.draw();
 		}
 	}
 };

@@ -13,6 +13,7 @@ public:
 	{
 		this->mm.setIsEnable(true);
 		this->mm.setIsBack(false);
+		this->mm.setIsCanEscape(false);
 		this->MenuButtonInit(0);
 	}
 

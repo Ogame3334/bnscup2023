@@ -8,7 +8,10 @@ void TitleScene::MenuButtonInit(int i) {
 	{
 	case 0:
 		this->mm.addButton([this] {this->MenuButtonInit(1); }).setText(U"Select Stage").setRectPos(Scene::Center().x - 100, 500);
+		this->mm.addButton(System::Exit).setText(U"ゲームを終了する").setRectPos(Scene::Center().x - 100, 600);
 		this->mm.setNowSelected(0);
+		this->mm.at(0).setUp(1).setDown(1);
+		this->mm.at(1).setUp(0).setDown(0);
 		break;
 	case 1:
 		this->mm.addButton([this] { this->changeScene(U"TestScene", 300); }).setText(U"Tutorial").setRectPos(Scene::Center().x - 475, 500);
