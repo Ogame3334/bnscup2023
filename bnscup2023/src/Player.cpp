@@ -40,23 +40,7 @@ namespace bnscup2023 {
 		pos += vel;
 
 		if (not(kR or kL or kU or kD) and falling) {
-			switch (anim.getState()) {
-			case PlayerState::Left:
-			case PlayerState::LeftGetWater:
-			case PlayerState::LeftSprinkleWater:
-			case PlayerState::LeftWalk:
-				focusedPos = p.movedBy(-1, 0);
-				break;
-			case PlayerState::Right:
-			case PlayerState::RightGetWater:
-			case PlayerState::RightSprinkleWater:
-			case PlayerState::RightWalk:
-				focusedPos = p.movedBy(+1, 0);
-				break;
-			default:
-				focusedPos = p.movedBy(0, 0);
-				break;
-			}
+			focusedPos = p.movedBy(getDirection(), 0);
 		}
 
 		// 衝突判定
@@ -134,22 +118,15 @@ namespace bnscup2023 {
 
 	void Player::jump() {
 		vel.y = -jump_speed;
-		switch (anim.getState()) {
-		case PlayerState::Left:
-		case PlayerState::LeftGetWater:
-		case PlayerState::LeftSprinkleWater:
-		case PlayerState::LeftWalk:
+		switch (getDirection()) {
+		case -1:
 			anim.setState(PlayerState::Left);
 			break;
-		case PlayerState::Right:
-		case PlayerState::RightGetWater:
-		case PlayerState::RightSprinkleWater:
-		case PlayerState::RightWalk:
+		case 1:
 			anim.setState(PlayerState::Right);
 			break;
 		default:
 			anim.setState(PlayerState::UpDown);
-			break;
 		}
 	}
 
@@ -183,15 +160,40 @@ namespace bnscup2023 {
 		return tile_map.at(pos.movedBy(.5, .5).asPoint()).getClimbable();
 	}
 
+	int Player::getDirection() const {
+		switch (anim.getState()) {
+		case PlayerState::Left:
+		case PlayerState::LeftGetWater:
+		case PlayerState::LeftSprinkleWater:
+		case PlayerState::LeftWalk:
+			return -1;
+		case PlayerState::Right:
+		case PlayerState::RightGetWater:
+		case PlayerState::RightSprinkleWater:
+		case PlayerState::RightWalk:
+			return 1;
+		default:
+			return 0;
+		}
+	}
+
 	bool Player::fillBucket() {
 		if (anim.getHasWater())return false;
-		anim.setHasWater(true);
+		anim.setState(
+			getDirection() < 0 ?
+			PlayerState::LeftGetWater :
+			PlayerState::RightGetWater
+		);
 		return true;
 	}
 
 	bool Player::useBucket() {
 		if (not anim.getHasWater())return false;
-		anim.setHasWater(false);
+		anim.setState(
+			getDirection() < 0 ?
+			PlayerState::LeftSprinkleWater :
+			PlayerState::RightSprinkleWater
+		);
 		return true;
 	}
 }
