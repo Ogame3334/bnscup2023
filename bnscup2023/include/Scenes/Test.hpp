@@ -43,6 +43,7 @@ public:
 
 	void draw() const override
 	{
+		TextureAsset(U"background").draw(0, 0);
 		//getData().tile_assets[1].drawAt(Scene::CenterF());
 		//getData().tile_assets[U"normal_ground"].drawAt(Scene::CenterF());
 		this->tile_map.draw();

@@ -15,6 +15,8 @@ void Main()
 
 	AudioAsset::Register(U"menu_enter", U"Assets/SoundEffect/menu_enter.mp3");
 	AudioAsset::Register(U"menu_move", U"Assets/SoundEffect/menu_move.mp3");
+
+	TextureAsset::Register(U"background", U"Assets/Textures/background.png");
 	// シーンマネージャーを作成
 	App manager;
 
