@@ -10,13 +10,16 @@ private:
 	bool hasGoaled = false;
 	TileMap tile_map = TileMap{ getData().tile_assets, U"TileTest.csv" };
 	Player player = Player{ getData().tile_assets, tile_map, Vec2(4, 4)};
-	const Audio audio{ U"Assets\\Audio\\Mixdown.mp3", Loop::Yes };
 public:
 	TestScene(const InitData& init)
 		: SceneBase{ init }
 	{
 		tile_map.at(13, 14).test();
-		audio.play();
+		AudioAsset(U"bgm").play();
+	}
+
+	~TestScene() {
+		AudioAsset(U"bgm").stop();
 	}
 
 	void updateGame() override {
