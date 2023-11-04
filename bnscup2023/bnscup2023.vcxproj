@@ -119,6 +119,7 @@
     <ClCompile Include="src\MenuButton.cpp" />
     <ClCompile Include="src\MenuManager.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Scenes\Title.cpp" />
     <ClCompile Include="src\Siv3DKunAnimation.cpp" />
     <ClCompile Include="src\TileAssets.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
