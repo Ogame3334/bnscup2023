@@ -5,7 +5,7 @@ namespace bnscup2023 {
 		tile_map.at(focusedPos).access(*this);
 		//Print << focusedPos;
 	}
-	void Player::update(double dt) {
+	bool Player::update(double dt) {
 		if (this->canProcessing) {
 			this->nowMillisec = 0;
 			Vec2 pos_prev = Vec2(pos);
@@ -36,7 +36,7 @@ namespace bnscup2023 {
 				else if (not falling) jump();
 			}
 			else if (climbable and falling and vel.y > 0) climb(-1);
-			if (KeyE.pressed()) access();
+			if (KeyE.down()) access();
 
 			// 位置の更新
 			if (falling)vel += Vec2(0, G);
