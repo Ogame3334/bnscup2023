@@ -28,6 +28,7 @@ int getValue(int n, int now) {
 void MenuButtonManager::update() {
 	//Console << this->now_selected;
 	if ((KeyUp | KeyRight | KeyDown | KeyLeft).down()) {
+		AudioAsset(U"menu_move").playOneShot();
 		if (this->now_selected == -1) {
 			this->now_selected = 0;
 		}
@@ -50,6 +51,7 @@ void MenuButtonManager::update() {
 		this->activeReload();
 	}
 	if (KeyEnter.down() and this->now_selected != -1) {
+		AudioAsset(U"menu_enter").playOneShot();
 		this->menu_buttons[this->now_selected].getButton().execute();
 	}
 }

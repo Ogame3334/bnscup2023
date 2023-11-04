@@ -11,6 +11,9 @@ void Main()
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy);
 	FontAsset::Register(U"Default", 30, Typeface::CJK_Regular_JP);
 	FontAsset::Register(U"ButtonDefault", 15, Typeface::CJK_Regular_JP);
+
+	AudioAsset::Register(U"menu_enter", U"Assets/SoundEffect/menu_enter.mp3");
+	AudioAsset::Register(U"menu_move", U"Assets/SoundEffect/menu_move.mp3");
 	// シーンマネージャーを作成
 	App manager;
 
