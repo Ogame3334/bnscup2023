@@ -21,6 +21,7 @@ struct GameData {
 		tile_assets.add<NormalTile>(U"floor_end_upper_left", U"floor_end_upper"); // 7
 		tile_assets.add<NormalTile>(U"floor_end_upper_right", U"floor_end_upper").setHoriFlip(true); // 8
 		tile_assets.add<PuddleTile>(U"puddle_full"); // 9
+		TextureAsset::Register(U"puddle_empty", U"Assets\\Textures\\Tiles\\puddle_empty.png");
 		tile_assets.add<MessageBoxTile>(U"message_box"); // 10
 		tile_assets.add<LadderTile>(U"ladder"); // 11
 	}

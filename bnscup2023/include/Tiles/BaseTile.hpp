@@ -27,6 +27,8 @@ namespace bnscup2023 {
 
 		void access(Player& player) { this->whenAccessed(player); };
 
+		virtual void test() {}
+
 		void setCollisionable(bool cond) { this->is_collisionable = cond; }
 		bool getCollisionable() const noexcept { return this->is_collisionable; }
 		void setClimbable(bool cond) { this->is_climbable = cond; }
@@ -36,6 +38,7 @@ namespace bnscup2023 {
 		void setHoriFlip(bool cond) { this->is_flip_horizontally = cond; }
 		bool getHoriFlip() const noexcept { return this->is_flip_horizontally; }
 
+		virtual void update() {}
 		void draw(int x, int y) const {
 			auto temp = TextureAsset(this->texture_asset_name).resized(TileSize);
 			if (this->is_flip_horizontally) temp = temp.mirrored();

@@ -14,7 +14,7 @@ public:
 	TestScene(const InitData& init)
 		: SceneBase{ init }
 	{
-
+		tile_map.at(13, 14).test();
 	}
 
 	void updateGame() override {

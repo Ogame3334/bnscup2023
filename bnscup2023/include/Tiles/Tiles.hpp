@@ -52,6 +52,7 @@ namespace bnscup2023 {
 		PuddleTile() = default;
 		PuddleTile(String texture_name) {
 			this->texture_asset_name = texture_name;
+			this->water_amount = 1;
 		}
 	};
 }

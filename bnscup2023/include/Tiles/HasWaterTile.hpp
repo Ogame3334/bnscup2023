@@ -3,6 +3,7 @@
 #include "BaseTile.hpp"
 
 namespace bnscup2023 {
+	class Player;
 	class HasWaterTile : public BaseTile {
 	protected:
 		int water_amount = 0;
@@ -22,11 +23,16 @@ namespace bnscup2023 {
 			if (this->water_amount > 0) this->water_amount = 0;
 		}
 
-	private:
-		void whenAccessed(Player& /*player*/) override {
-			// TODO ここにプレイヤーとの水の繋がりを書く
-			if (this->water_amount == 0); // TODO テクスチャの変更
-			/*else*/ // TODO テクスチャの変更
+		void test() override {
+			this->water_amount = 0;
+			this->updateTexture();
 		}
+		void update() override {
+
+		}
+
+	private:
+		void whenAccessed(Player& player) override;
+		void updateTexture();
 	};
 }
