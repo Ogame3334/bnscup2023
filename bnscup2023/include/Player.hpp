@@ -4,6 +4,10 @@
 #include "Siv3DKunAnimation.hpp"
 
 namespace bnscup2023 {
+	class BaseTile;
+	class HasWaterTile;
+	class TileAssets;
+	class TileMap;
 	class Player {
 	private:
 		static constexpr double walk_speed = 7e-2;
@@ -18,6 +22,9 @@ namespace bnscup2023 {
 		TileMap& tile_map;
 		double dt = 16;
 		Siv3DKunAnimation anim = Siv3DKunAnimation();
+		bool canProcessing = true;
+		static constexpr int CantProcessingMillisec = 3000;
+		int nowMillisec = 0;
 		
 	public:
 		// Player() {}
@@ -41,5 +48,9 @@ namespace bnscup2023 {
 		int getDirection() const;
 		bool fillBucket();
 		bool useBucket();
+		bool hasWater() const { return this->anim.getHasWater(); }
+		constexpr void setCanProcessing(bool cond) noexcept { this->canProcessing = cond; }
+		constexpr bool getCanProcessing() const noexcept { return this->canProcessing; }
+		//void sleep(int millisec);
 	};
 }

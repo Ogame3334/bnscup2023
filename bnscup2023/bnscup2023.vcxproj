@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="src\HasWaterTile.cpp" />
     <ClCompile Include="src\MenuButton.cpp" />
     <ClCompile Include="src\MenuManager.cpp" />
     <ClCompile Include="src\Player.cpp" />

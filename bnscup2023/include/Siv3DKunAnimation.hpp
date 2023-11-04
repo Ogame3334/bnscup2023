@@ -21,7 +21,7 @@ namespace bnscup2023 {
 		PlayerState pre_state = PlayerState::UpDown;
 		Texture texture{ U"Assets/Player/siv3d-kun-bnscup2023.png" };
 		std::array<int, 4> pattern = { 1, 0, 1, 2 };
-		bool has_water = true;
+		bool has_water = false;
 		int64 anim_start = 0;
 		int index = 0;
  
