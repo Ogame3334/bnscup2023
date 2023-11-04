@@ -96,6 +96,9 @@ namespace bnscup2023 {
 		}
 		// アニメーションの更新
 		anim.update();
+
+		// クリア条件の判定
+		return tile_map.Width - 1 < pos.x;
 	}
 	void Player::draw() const {
 		const ScopedRenderStates2D sampler{ SamplerState::ClampNearest };
