@@ -7,6 +7,7 @@ class TestScene : public SceneBase
 {
 private:
 	bool pause;
+	bool hasGoaled = false;
 	TileMap tile_map = TileMap{ getData().tile_assets, U"TileTest.csv" };
 	Player player = Player{ getData().tile_assets, tile_map, Vec2(4, 4)};
 public:
@@ -17,7 +18,12 @@ public:
 	}
 
 	void updateGame() override {
-	    this->player.update(1000/60.0);// TODO: 前フレームからの経過時間を渡す(秒orミリ秒)
+		if (not hasGoaled) {
+			hasGoaled = player.update(1000 / 60.0);// TODO: 前フレームからの経過時間を渡す(秒orミリ秒)
+		}
+		else {
+			Print << U"Goaled";
+		}
 	}
 
 	void updateUI() override

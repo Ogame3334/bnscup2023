@@ -29,7 +29,10 @@ namespace bnscup2023 {
 		}
 
 		void access();
-		void update(double dt);
+		/// @brief プレイヤーの更新
+		/// @param dt 前フレームからの経過時間[ms]
+		/// @return クリア条件を満たしたかどうかを表す真偽値(true:クリア)
+		bool update(double dt);
 		void draw() const;
 		void walk(double s);
 		void climb(double s);
