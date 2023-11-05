@@ -33,6 +33,7 @@ void Main()
 	manager.add<OgameTest>(U"OgameTest");
 	manager.add<MenuTest>(U"MenuTest");
 	manager.add<AnimTestScene>(U"AnimTestScene");
+	manager.add<TutorialScene>(U"TutorialScene");
 
 	manager.init(U"Title", .3s);
 
