@@ -30,7 +30,7 @@ namespace bnscup2023 {
 				focusedPos = p.movedBy(-1, 0);
 			}
 			if (kU) focusedPos = p.movedBy(0, -1);
-			if (kD) focusedPos = p.movedBy(0, +1);
+			if (kD) focusedPos = p.movedBy(getDirection(), +1);
 			if (KeySpace.pressed()) {
 				if (climbable) climb(+1);
 				else if (not falling) jump();
@@ -96,6 +96,8 @@ namespace bnscup2023 {
 		}
 		// アニメーションの更新
 		anim.update();
+
+		if (tile_map.Height - 1 < pos.y) this->retry_handler();
 
 		// クリア条件の判定
 		return tile_map.Width - 1 < pos.x;

@@ -19,6 +19,7 @@ namespace bnscup2023 {
 			this->texture_asset_name = texture_name;
 			this->is_collisionable = false;
 		}
+		inline constexpr bool getIsAir() const noexcept override { return true; }
 	};
 	class NormalTile : public BaseTile {
 	public:
@@ -54,5 +55,74 @@ namespace bnscup2023 {
 			this->texture_asset_name = texture_name;
 			this->water_amount = 1;
 		}
+	};
+	class VineBudTile : public BaseTile {
+	public:
+		VineBudTile() = default;
+		VineBudTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+			this->is_collisionable = false;
+		}
+		void whenAccessed(Player&) override;
+	};
+	class VineTile : public BaseTile {
+	private:
+		static constexpr int GrowMillisec = 500;
+		int past_millisec = 0;
+	public:
+		VineTile() = default;
+		VineTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+			this->is_climbable = true;
+			this->is_collisionable = false;
+		}
+
+		void update(TileMap&, Point) override;
+	};
+	class GoalRootTile : public BaseTile {
+	private:
+		inline static bool isOpened = false;
+	public:
+		GoalRootTile() = default;
+		GoalRootTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+		}
+
+		void whenAccessed(Player&) override;
+		void update(TileMap&, Point) override;
+	};
+	class LavaTile : public BaseTile {
+	protected:
+		inline static bool is_cold = false;
+	public:
+		LavaTile() = default;
+		LavaTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+			this->is_lava = true;
+			this->is_collisionable = false;
+		}
+
+		void whenAccessed(Player&) override;
+		void update(TileMap&, Point) override;
+	};
+	class LavaOneTile : public LavaTile {
+	public:
+		LavaOneTile() = default;
+		LavaOneTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+			this->is_lava = true;
+			this->is_collisionable = false;
+		}
+		void update(TileMap&, Point) override;
+	};
+	class LavaEndTile : public LavaTile {
+	public:
+		LavaEndTile() = default;
+		LavaEndTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+			this->is_lava = true;
+			this->is_collisionable = false;
+		}
+		void update(TileMap&, Point) override;
 	};
 }

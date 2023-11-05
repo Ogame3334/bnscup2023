@@ -4,6 +4,7 @@
 
 namespace bnscup2023 {
 	class Player;
+	class TileMap;
 	class BaseTile {
 	private:
 		virtual void whenAccessed(Player& /*player*/) {};
@@ -14,6 +15,7 @@ namespace bnscup2023 {
 		bool is_climbable = false;
 		bool is_flip_vertically = false;
 		bool is_flip_horizontally = false;
+		bool is_lava = false;
 	public:
 		inline static int TileSize = 40;
 		BaseTile() = default;
@@ -22,7 +24,8 @@ namespace bnscup2023 {
 			is_collisionable(other.is_collisionable),
 			is_climbable(other.is_climbable),
 			is_flip_vertically(other.is_flip_vertically),
-			is_flip_horizontally(other.is_flip_horizontally)
+			is_flip_horizontally(other.is_flip_horizontally),
+			is_lava(other.is_lava)
 		{}
 
 		void access(Player& player) { this->whenAccessed(player); };
@@ -37,8 +40,11 @@ namespace bnscup2023 {
 		bool getVertFlip() const noexcept { return this->is_flip_vertically; }
 		void setHoriFlip(bool cond) { this->is_flip_horizontally = cond; }
 		bool getHoriFlip() const noexcept { return this->is_flip_horizontally; }
+		void setLava(bool cond) { this->is_lava = cond; }
+		bool getLava() const noexcept { return this->is_lava; }
+		virtual inline constexpr bool getIsAir() const noexcept { return false; }
 
-		virtual void update() {}
+		virtual void update(TileMap&, Point) {}
 		void draw(int x, int y) const {
 			auto temp = TextureAsset(this->texture_asset_name).resized(TileSize);
 			if (this->is_flip_horizontally) temp = temp.mirrored();

@@ -27,7 +27,7 @@ namespace bnscup2023 {
 			this->water_amount = 0;
 			this->updateTexture();
 		}
-		void update() override {
+		void update(TileMap&, Point) override {
 
 		}
 

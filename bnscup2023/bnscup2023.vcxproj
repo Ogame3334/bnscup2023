@@ -116,7 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="src\HasWaterTile.cpp" />
+    <ClCompile Include="src\Tiles\HasWaterTile.cpp" />
     <ClCompile Include="src\MenuButton.cpp" />
     <ClCompile Include="src\MenuManager.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -124,6 +124,7 @@
     <ClCompile Include="src\Siv3DKunAnimation.cpp" />
     <ClCompile Include="src\TileAssets.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
+    <ClCompile Include="src\Tiles\Tiles.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -309,7 +310,6 @@
     <None Include="Assets\Fields\TileTest.csv" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\..\..\..\OneDrive - Kyushu Institute Of Technolgy\デスクトップ\Mixdown.mp3" />
     <Media Include="App\example\shot.mp3" />
     <Media Include="App\example\test.mp3" />
     <Media Include="App\example\video\river.mp4" />

@@ -25,7 +25,8 @@ namespace bnscup2023 {
 		bool canProcessing = true;
 		static constexpr int CantProcessingMillisec = 3000;
 		int nowMillisec = 0;
-		
+		std::function<void(void)> retry_handler = nullptr;
+
 	public:
 		// Player() {}
 		Player(TileAssets& ta, TileMap& tm)
@@ -52,8 +53,10 @@ namespace bnscup2023 {
 		bool fillBucket();
 		bool useBucket();
 		bool hasWater() const { return this->anim.getHasWater(); }
+		TileMap& getTileMapRef() { return this->tile_map; }
+		Point getFocusedPos() const noexcept { return this->focusedPos; }
 		constexpr void setCanProcessing(bool cond) noexcept { this->canProcessing = cond; }
 		constexpr bool getCanProcessing() const noexcept { return this->canProcessing; }
-		//void sleep(int millisec);
+		void setRetryHandler(std::function<void(void)> h) { this->retry_handler = h; }
 	};
 }
