@@ -36,9 +36,10 @@ struct GameData {
 		TextureAsset::Register(U"lava_end_cold", U"Assets/Textures/Tiles/lava_end_cold.png");
 		tile_assets.add<LavaOneTile>(U"lava_one"); // 19
 		TextureAsset::Register(U"lava_one_cold", U"Assets/Textures/Tiles/lava_one_cold.png");
-		tile_assets.add<NormalTile>(U"root", U"goal_root_closed"); // 20
-		tile_assets.add<NormalTile>(U"root_opened", U"goal_root_opened"); // 21
+		tile_assets.add<RootTile>(U"root", U"goal_root_closed"); // 20
+		tile_assets.add<NormalNotCollisionTile>(U"root_opened", U"goal_root_opened"); // 21
 		tile_assets.add<MessageBoxTile>(U"message_box"); // 22
+		tile_assets.add<NormalNotCollisionTile>(U"wall_inside"); // 23
 	}
 };
 
