@@ -102,6 +102,7 @@ namespace bnscup2023 {
 			this->is_collisionable = false;
 		}
 
+		void reset() override { this->is_cold = false; }
 		void whenAccessed(Player&) override;
 		void update(TileMap&, Point) override;
 	};

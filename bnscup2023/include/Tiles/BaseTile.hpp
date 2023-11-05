@@ -30,6 +30,8 @@ namespace bnscup2023 {
 
 		void access(Player& player) { this->whenAccessed(player); };
 
+		virtual void reset() {}
+
 		virtual void test() {}
 
 		void setCollisionable(bool cond) { this->is_collisionable = cond; }
