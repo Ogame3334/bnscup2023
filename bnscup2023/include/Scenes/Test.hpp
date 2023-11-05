@@ -15,6 +15,7 @@ public:
 	TestScene(const InitData& init)
 		: SceneBase{ init }
 	{
+		player.setRetryHandler([this] {this->changeScene(U"TestScene", .3s); });
 		tile_map.at(13, 14).test();
 		mm.addButton([this] {this->changeScene(U"Title", .3s); }).setText(U"タイトルに戻る").setRectPos(Scene::Center().x - 100, 260);
 		mm.addButton([this] {this->changeScene(U"TestScene", .3s); }).setText(U"リトライ").setRectPos(Scene::Center().x - 100, 360);
@@ -30,6 +31,7 @@ public:
 	}
 
 	void updateGame() override {
+		this->tile_map.update();
 		if (not hasGoaled) {
 			hasGoaled = player.update(1000 / 60.0);// TODO: 前フレームからの経過時間を渡す(秒orミリ秒)
 		}

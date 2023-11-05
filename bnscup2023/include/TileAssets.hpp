@@ -68,6 +68,12 @@ namespace bnscup2023 {
 			if (index < 0 or index >= assets.size()) return assets[0].second->getNewPtr();
 			else return assets[index + 1].second->getNewPtr();
 		}
+		std::shared_ptr<BaseTile> getNewPtr(String key) {
+			for (auto asset : this->assets) {
+				if (asset.first == key) return asset.second->getNewPtr();
+			}
+			return this->assets[0].second->getNewPtr();
+		}
 		BaseTile operator[] (int index) { return this->get(index); }
 		BaseTile operator[] (String&& key);
 	};

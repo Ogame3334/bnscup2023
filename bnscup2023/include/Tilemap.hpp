@@ -24,6 +24,11 @@ namespace bnscup2023 {
 
 		BaseTile& at(int x, int y) { return *(this->field[y][x]); }
 		BaseTile& at(Point pos) { return this->at(pos.x, pos.y); }
+		//void changeTile(int x, int y, BaseTile* btp) { this->field[y][x] = }
+		void changeTile(int x, int y, int tile_id) { this->field[y][x] = tile_assets.getNewPtr(tile_id); }
+		void changeTile(int x, int y, String&& key) { this->field[y][x] = tile_assets.getNewPtr(key); }
+		void changeTile(Point pos, String&& key) { this->field[pos.y][pos.x] = tile_assets.getNewPtr(key); }
+		//void changeTile(Point pos, BaseTile* btp) { this->changeTile(pos.x, pos.y, btp); }
 
 		void update();
 		void draw() const;

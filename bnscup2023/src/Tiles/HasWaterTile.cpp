@@ -1,5 +1,5 @@
-﻿#include "../include/Player.hpp"
-#include "../include/Tiles/HasWaterTile.hpp"
+﻿#include "../../include/Player.hpp"
+#include "../../include/Tiles/HasWaterTile.hpp"
 
 using namespace bnscup2023;
 
