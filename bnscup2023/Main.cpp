@@ -38,7 +38,7 @@ void Main()
 	sw.start(); //FPS60
 	while (System::Update())
 	{
-		//Cursor::RequestStyle(CursorStyle::Hidden);
+		Cursor::RequestStyle(CursorStyle::Hidden);
 		if (not manager.update())
 		{
 			break;
