@@ -305,10 +305,11 @@
     <None Include="App\example\toml\config.toml" />
     <None Include="App\example\toml\test.toml" />
     <None Include="App\example\zip\zip_test.zip" />
+    <None Include="Assets\Fields\OgameField.csv" />
     <None Include="Assets\Fields\Sample.csv" />
     <None Include="Assets\Fields\TestField.csv" />
     <None Include="Assets\Fields\TileTest.csv" />
-    <None Include="Assets\Fields\TutorialField.csv" />
+    <None Include="Assets\Fields\TomoqField.csv" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\shot.mp3" />
@@ -336,10 +337,11 @@
     <ClInclude Include="include\SceneConfig.hpp" />
     <ClInclude Include="include\Scenes\AnimTest.hpp" />
     <ClInclude Include="include\Scenes\MenuTest.hpp" />
+    <ClInclude Include="include\Scenes\OgameScene.hpp" />
     <ClInclude Include="include\Scenes\OgameTest.h" />
     <ClInclude Include="include\Scenes\Test.hpp" />
     <ClInclude Include="include\Scenes\Title.hpp" />
-    <ClInclude Include="include\Scenes\Tutorial.hpp" />
+    <ClInclude Include="include\Scenes\Tomoq.hpp" />
     <ClInclude Include="include\TileAssets.hpp" />
     <ClInclude Include="include\LoadField.hpp" />
     <ClInclude Include="include\Tile.hpp" />

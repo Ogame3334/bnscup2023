@@ -34,7 +34,8 @@ void Main()
 	manager.add<OgameTest>(U"OgameTest");
 	manager.add<MenuTest>(U"MenuTest");
 	manager.add<AnimTestScene>(U"AnimTestScene");
-	manager.add<TutorialScene>(U"TutorialScene");
+	manager.add<TomoqScene>(U"TomoqScene");
+	manager.add<OgameScene>(U"OgameScene");
 
 	manager.init(U"Title", .3s);
 
