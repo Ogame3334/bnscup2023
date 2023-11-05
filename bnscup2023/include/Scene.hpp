@@ -6,3 +6,4 @@
 #include "Scenes/OgameTest.h"
 #include "Scenes/AnimTest.hpp"
 #include "Scenes/MenuTest.hpp"
+#include "Scenes/OgameScene.hpp"
