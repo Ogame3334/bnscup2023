@@ -17,8 +17,8 @@ namespace bnscup2023 {
 	};
 	class Siv3DKunAnimation {
 	private:
-		PlayerState state = PlayerState::UpDown;
-		PlayerState pre_state = PlayerState::UpDown;
+		PlayerState state = PlayerState::Right;
+		PlayerState pre_state = PlayerState::Right;
 		Texture texture{ U"Assets/Player/siv3d-kun-bnscup2023.png" };
 		std::array<int, 4> pattern = { 1, 0, 1, 2 };
 		bool has_water = false;
