@@ -28,6 +28,11 @@ public:
 
 	~TutorialScene() {
 		AudioAsset(U"bgm").stop();
+		for (int y = 0; y < TileMap::Height; y++) {
+			for (int x = 0; x < TileMap::Width; x++) {
+				this->tile_map.at(x, y).reset();
+			}
+		}
 	}
 
 	void updateGame() override {
