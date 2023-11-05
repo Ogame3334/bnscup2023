@@ -56,8 +56,21 @@ public:
 		TextureAsset(U"background").draw(0, 0);
 		//getData().tile_assets[1].drawAt(Scene::CenterF());
 		//getData().tile_assets[U"normal_ground"].drawAt(Scene::CenterF());
+
+		FontAsset(U"TitleFont")(U"↓").drawAt(60, 560);
+		FontAsset(U"TitleFont")(U"AD or ←→ ： 横移動").draw(30, Arg::leftCenter(40, 440));
+		FontAsset(U"TitleFont")(U"Space ： ジャンプ・登る").draw(30, Arg::leftCenter(40, 480));
+		FontAsset(U"TitleFont")(U"WS or ↑↓ : タイル選択").draw(30, Arg::leftCenter(160, 260));
+		FontAsset(U"TitleFont")(U"E : 水をすくう・使う").draw(30, Arg::leftCenter(160, 300));
+		FontAsset(U"TitleFont")(U"Esc : ポーズメニュー").draw(30, Arg::leftCenter(40, 40));
+		FontAsset(U"TitleFont")(U"水をかけると通れるように").draw(30, Arg::rightCenter(1240, 120));
+		FontAsset(U"TitleFont")(U"GOAL→").draw(30, Arg::rightCenter(1240, 160));
+
+
 		this->tile_map.draw();
 		this->player.draw();
+
+
 		if (pause) {
 			//FontAsset(U"TitleFont")(U"PAUSE").drawAt(640, 360);
 			mm.draw();
