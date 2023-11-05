@@ -38,7 +38,7 @@ public:
 	void draw() const override
 	{
 		TextureAsset(U"background").draw(0, 0);
-		FontAsset(U"TitleFont")(U"Water Adventure").drawAt(640, 200);
+		FontAsset(U"TitleFont")(U"Wasteland Adventure").drawAt(640, 200);
 		this->mm.draw();
 	}
 };
