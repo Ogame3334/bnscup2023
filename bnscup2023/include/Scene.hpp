@@ -8,3 +8,4 @@
 #include "Scenes/MenuTest.hpp"
 #include "Scenes/OgameScene.hpp"
 #include "Scenes/Tomoq.hpp"
+#include "Scenes/Tutorial.hpp"

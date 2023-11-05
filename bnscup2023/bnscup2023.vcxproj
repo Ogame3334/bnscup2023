@@ -310,6 +310,7 @@
     <None Include="Assets\Fields\TestField.csv" />
     <None Include="Assets\Fields\TileTest.csv" />
     <None Include="Assets\Fields\TomoqField.csv" />
+    <None Include="Assets\Fields\TutorialField.csv" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\shot.mp3" />
@@ -342,6 +343,7 @@
     <ClInclude Include="include\Scenes\Test.hpp" />
     <ClInclude Include="include\Scenes\Title.hpp" />
     <ClInclude Include="include\Scenes\Tomoq.hpp" />
+    <ClInclude Include="include\Scenes\Tutorial.hpp" />
     <ClInclude Include="include\TileAssets.hpp" />
     <ClInclude Include="include\LoadField.hpp" />
     <ClInclude Include="include\Tile.hpp" />

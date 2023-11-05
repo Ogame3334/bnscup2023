@@ -14,7 +14,7 @@ void TitleScene::MenuButtonInit(int i) {
 		this->mm.at(1).setUp(0).setDown(0);
 		break;
 	case 1:
-		this->mm.addButton([this] { this->changeScene(U"TestScene", 300); }).setText(U"Tutorial").setRectPos(Scene::Center().x - 475, 500);
+		this->mm.addButton([this] { this->changeScene(U"TutorialScene", 300); }).setText(U"Tutorial").setRectPos(Scene::Center().x - 475, 500);
 		this->mm.addButton([this] {this->changeScene(U"OgameScene", 300); }).setText(U"Stage 1").setRectPos(Scene::Center().x - 225, 500);
 		this->mm.addButton([this] {this->changeScene(U"TomoqScene", 300); }).setText(U"Stage 2").setRectPos(Scene::Center().x + 25, 500);
 		this->mm.addButton([this] { this->MenuButtonInit(1); }).setText(U"Stage 3").setRectPos(Scene::Center().x + 275, 500);
