@@ -17,6 +17,7 @@ void Main()
 	AudioAsset::Register(U"menu_move", U"Assets/SoundEffect/menu_move.mp3");
 
 	AudioAsset::Register(U"bgm", U"Assets/Audio/Mixdown.mp3", Loop::Yes);
+	AudioAsset::Register(U"titlebgm", U"Assets/Audio/title.mp3", Loop::Yes);
 
 	TextureAsset::Register(U"background", U"Assets/Textures/background.png");
 	// シーンマネージャーを作成
