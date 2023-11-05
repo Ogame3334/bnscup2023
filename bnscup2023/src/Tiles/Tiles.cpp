@@ -35,6 +35,20 @@ void GoalRootTile::update(TileMap&, Point) {
 	}
 }
 
+void RootTile::whenAccessed(Player& player) {
+	if (player.hasWater()) {
+		player.setCanProcessing(false);
+		player.useBucket();
+		this->is_opened = true;
+	}
+}
+void RootTile::update(TileMap&, Point) {
+	if (this->is_opened) {
+		this->texture_asset_name = U"goal_root_opened";
+		this->is_collisionable = false;
+	}
+}
+
 void LavaTile::whenAccessed(Player& player) {
 	if (player.hasWater()) {
 		player.setCanProcessing(false);

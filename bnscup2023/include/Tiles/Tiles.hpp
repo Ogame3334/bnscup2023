@@ -28,6 +28,14 @@ namespace bnscup2023 {
 			this->texture_asset_name = texture_name;
 		}
 	};
+	class NormalNotCollisionTile : public BaseTile {
+	public:
+		NormalNotCollisionTile() = default;
+		NormalNotCollisionTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+			this->is_collisionable = false;
+		}
+	};
 	class MessageBoxTile : public BaseTile {
 	private:
 		void whenAccessed(Player& /*player*/) override {
@@ -77,6 +85,18 @@ namespace bnscup2023 {
 			this->is_collisionable = false;
 		}
 
+		void update(TileMap&, Point) override;
+	};
+	class RootTile : public BaseTile {
+	private:
+		bool is_opened = false;
+	public:
+		RootTile() = default;
+		RootTile(String texture_name) {
+			this->texture_asset_name = texture_name;
+		}
+
+		void whenAccessed(Player&) override;
 		void update(TileMap&, Point) override;
 	};
 	class GoalRootTile : public BaseTile {
