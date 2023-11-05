@@ -15,6 +15,8 @@ void Main()
 
 	AudioAsset::Register(U"menu_enter", U"Assets/SoundEffect/menu_enter.mp3");
 	AudioAsset::Register(U"menu_move", U"Assets/SoundEffect/menu_move.mp3");
+	AudioAsset::Register(U"stage_clear", U"Assets/SoundEffect/stage_clear.mp3");
+	AudioAsset::Register(U"stage_failed", U"Assets/SoundEffect/stage_failed.mp3");
 
 	AudioAsset::Register(U"bgm", U"Assets/Audio/Mixdown.mp3", Loop::Yes);
 	AudioAsset::Register(U"titlebgm", U"Assets/Audio/title.mp3", Loop::Yes);

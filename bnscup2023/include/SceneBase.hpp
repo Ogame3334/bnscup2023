@@ -12,6 +12,7 @@ public:
 		isPause = false;
 	};
 
+	void setIsPause(bool cond) { this->isPause = cond; }
 	bool getIsPause() {
 		return isPause;
 	}
