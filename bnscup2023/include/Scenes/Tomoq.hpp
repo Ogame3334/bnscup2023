@@ -1,0 +1,61 @@
+﻿#pragma once
+
+#include "../SceneConfig.hpp"
+#include "../Player.hpp"
+
+class TomoqScene : public SceneBase
+{
+private:
+	bool pause;
+	bool hasGoaled = false;
+	TileMap tile_map = TileMap{ getData().tile_assets, U"TomoqField.csv" };
+	Player player = Player{ getData().tile_assets, tile_map, Vec2(1, 16) };
+	MenuManager mm{ true };
+public:
+	TomoqScene(const InitData& init)
+		: SceneBase{ init }
+	{
+		player.setRetryHandler([this] {this->changeScene(U"TomoqScene", .3s); });
+		tile_map.at(13, 14).test();
+		mm.addButton([this] {this->changeScene(U"Title", .3s); }).setText(U"タイトルに戻る").setRectPos(Scene::Center().x - 100, 260);
+		mm.addButton([this] {this->changeScene(U"TomoqScene", .3s); }).setText(U"リトライ").setRectPos(Scene::Center().x - 100, 360);
+		mm.addButton([] { System::Exit(); }).setText(U"ゲームを終了する").setRectPos(Scene::Center().x - 100, 460);
+		mm.at(0).setUp(2).setDown(1);
+		mm.at(1).setUp(0).setDown(2);
+		mm.at(2).setUp(1).setDown(0);
+		AudioAsset(U"bgm").play();
+	}
+
+	~TomoqScene() {
+		AudioAsset(U"bgm").stop();
+	}
+
+	void updateGame() override {
+		this->tile_map.update();
+		if (not hasGoaled) {
+			hasGoaled = player.update(1000 / 60.0);// TODO: 前フレームからの経過時間を渡す(秒orミリ秒)
+		}
+		else {
+			Print << U"Goaled";
+		}
+	}
+
+	void updateUI() override
+	{
+		pause = getIsPause();
+		mm.update();
+	}
+
+	void draw() const override
+	{
+		TextureAsset(U"background").draw(0, 0);
+		//getData().tile_assets[1].drawAt(Scene::CenterF());
+		//getData().tile_assets[U"normal_ground"].drawAt(Scene::CenterF());
+		this->tile_map.draw();
+		this->player.draw();
+		if (pause) {
+			//FontAsset(U"TitleFont")(U"PAUSE").drawAt(640, 360);
+			mm.draw();
+		}
+	}
+};
